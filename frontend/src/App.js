@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Box } from '@mui/material';
-import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Layout/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProblemDetail from './pages/ProblemDetail';
+import CreateProblem from './pages/CreateProblem';
 
 const theme = createTheme({
   palette: {
@@ -61,26 +61,25 @@ const theme = createTheme({
 
 function App() {
   return (
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AuthProvider>
-          <Router>
-            <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-              <Header />
-              <Box component="main" sx={{ flexGrow: 1 }}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/problems/:id" element={<ProblemDetail />} />
-                </Routes>
-              </Box>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
+        <Router>
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Header />
+            <Box component="main" sx={{ flexGrow: 1 }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/problems/:id" element={<ProblemDetail />} />
+                <Route path="/create" element={<CreateProblem/>} />
+              </Routes>
             </Box>
-          </Router>
-        </AuthProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+          </Box>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
